@@ -1,0 +1,297 @@
+ 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFP: Agro-Product Technology - Derivative Analysis App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-orange-50 min-h-screen text-slate-800">
+
+    <header class="bg-gradient-to-r from-amber-700 to-orange-800 text-white shadow-xl py-6 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+                <span class="bg-amber-500 text-amber-950 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
+                    SFP: Agro Product Technology Core
+                </span>
+                <h1 class="text-3xl font-extrabold mt-2 tracking-tight">Enzymatic Hydrolysis Velocity Analytics</h1>
+                <p class="text-amber-100 text-sm mt-1">Applying calculus derivatives to optimize oil palm biomass processing rates.</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-left md:text-right text-xs text-amber-200">
+                <p class="font-semibold">Malaysian Agro-Industrial Framework</p>
+                <p class="opacity-75">Calculus $f'(x)$ Real-time Interactive Simulator</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <div class="lg:col-span-1 space-y-6">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+                <h2 class="text-lg font-extrabold text-amber-900 mb-2 flex items-center gap-2">
+                    🌾 The Agro-Product Problem
+                </h2>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Malaysia produces millions of tonnes of <strong>Oil Palm Empty Fruit Bunches (EFB)</strong> annually. In modern agro-processing, EFB cellulose is treated with cellulase enzymes to generate reducing sugars for bio-based products.
+                </p>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Because enzymes degrade and suffer from feedback inhibition, the yield curve flattens. Process technologists use the first derivative $f'(x)$ to pinpoint the exact window of maximum output speed before efficiency drops.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 space-y-1">
+                    <span class="font-semibold block text-slate-500">Academic Data References:</span>
+                    <div>• <span class="text-amber-700 font-medium">MPOB (Malaysian Palm Oil Board)</span> - Biomass Utilization Reports</div>
+                    <div>• <span class="text-amber-700 font-medium">MARDI</span> - Food & Agro-Bioproduct Processing Archives</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+                <h2 class="text-lg font-extrabold text-slate-900 mb-3 flex items-center gap-2">
+                    📐 Calculus Modeling
+                </h2>
+                <p class="text-xs text-slate-600 mb-3">
+                    The accumulation of reducing sugars ($g/L$) over saccharification time ($x$ hours) fits a Sigmoidal Hill-Type kinetics curve:
+                </p>
+                
+                <div class="bg-slate-900 text-amber-400 p-4 rounded-xl font-mono text-xs space-y-4 shadow-inner">
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider mb-0.5">Yield Function f(x):</span>
+                        <span class="text-white text-sm">f(x) = 50x² / (x² + 25)</span>
+                    </div>
+                    <div class="border-t border-slate-800 pt-2">
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider mb-0.5">Derivative f'(x) [Reaction Velocity]:</span>
+                        <span class="text-amber-300 text-sm">f'(x) = 2500x / (x² + 25)²</span>
+                    </div>
+                </div>
+
+                <div class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+                    Here, <strong class="text-slate-700">f(x)</strong> represents total sugar concentration ($g/L$). The derivative <strong class="text-slate-700">f'(x)</strong> computes the <em>instantaneous conversion rate</em> ($g/L/hour$) at exactly hour $x$.
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-amber-100">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 tracking-tight">Kinetic Rate Visualization</h2>
+                        <p class="text-xs text-slate-400">Click anywhere near the lines to audit that process step</p>
+                    </div>
+                    <div class="bg-amber-100 text-amber-800 text-[11px] font-bold px-3 py-1 rounded-full self-start animate-pulse">
+                        💡 Click Chart to Sample Derivative
+                    </div>
+                </div>
+                
+                <div class="relative h-[340px] w-full">
+                    <canvas id="bioprocessChart"></canvas>
+                </div>
+            </div>
+
+            <div id="dashboard-panel" class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl transition-all duration-500 border-l-8 border-amber-500">
+                <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+                    <h3 class="text-md font-bold uppercase tracking-wider text-amber-400" id="dash-stage">Bioprocess Audit Status</h3>
+                    <span id="dash-badge" class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300">No Data Sampled</span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+                    <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 block uppercase font-medium">Batch Process Time</span>
+                        <div class="text-xl font-extrabold text-white mt-0.5" id="out-time">-- <span class="text-xs font-normal text-slate-400">hours</span></div>
+                    </div>
+                    <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 block uppercase font-medium">Total Sugar f(x)</span>
+                        <div class="text-xl font-extrabold text-emerald-400 mt-0.5" id="out-yield">-- <span class="text-xs font-normal text-slate-400">g/L</span></div>
+                    </div>
+                    <div class="bg-slate-800/50 p-3 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-slate-400 block uppercase font-medium">Hydrolysis Rate f'(x)</span>
+                        <div class="text-xl font-extrabold text-amber-400 mt-0.5" id="out-rate">-- <span class="text-xs font-normal text-slate-400">g/L/hr</span></div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 mt-2">
+                    <span class="text-[11px] font-bold text-amber-500 block uppercase tracking-wider mb-1">Layman & Agro-Product Interpretation:</span>
+                    <p class="text-xs text-slate-300 leading-relaxed italic" id="out-explanation">
+                        Please click a data point on the dynamic chart timeline above. The application will compute the instantaneous derivative and interpret what is happening inside the agro-processing reactor tank.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center text-xs text-slate-400 py-8 border-t border-amber-100/40 mt-12">
+        SFP Curriculum Module Integration • Agro-Industrial Bioprocess Technology Software Engine
+    </footer>
+
+    <script>
+        // Data generation arrays (Reactor tracking timeline from 0 to 20 hours)
+        const timelineLabels = [];
+        const sugarYieldData = [];
+        const reactionRateData = [];
+
+        // f(x): Hill Kinetics equation for reducing sugar accumulation
+        function calculateYield(x) {
+            return (50 * Math.pow(x, 2)) / (Math.pow(x, 2) + 25);
+        }
+
+        // f'(x): Analytical Derivative representing instantaneous conversion speed
+        function calculateDerivative(x) {
+            const numerator = 2500 * x;
+            const denominator = Math.pow((Math.pow(x, 2) + 25), 2);
+            return numerator / denominator;
+        }
+
+        // Fill data matrix for the chart at half-hour increments
+        for (let hour = 0; hour <= 20; hour += 0.5) {
+            timelineLabels.push(hour);
+            sugarYieldData.push(calculateYield(hour).toFixed(2));
+            reactionRateData.push(calculateDerivative(hour).toFixed(2));
+        }
+
+        // Chart.js Configuration Matrix
+        const canvasCtx = document.getElementById('bioprocessChart').getContext('2d');
+        const bioprocessChart = new Chart(canvasCtx, {
+            type: 'line',
+            data: {
+                labels: timelineLabels,
+                datasets: [
+                    {
+                        label: 'Sugar Yield f(x) (g/L)',
+                        data: sugarYieldData,
+                        borderColor: '#d97706', // Amber 600
+                        backgroundColor: 'rgba(217, 119, 6, 0.08)',
+                        fill: true,
+                        tension: 0.2,
+                        yAxisID: 'yAxisYield'
+                    },
+                    {
+                        label: 'Hydrolysis Rate f\'(x) (g/L/hr)',
+                        data: reactionRateData,
+                        borderColor: '#2563eb', // Blue 600
+                        borderDash: [6, 4],
+                        fill: false,
+                        tension: 0.2,
+                        yAxisID: 'yAxisRate'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 1800,
+                    easing: 'easeOutCubic'
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Reaction Residence Time (Hours)',
+                            font: { size: 11, weight: 'bold' }
+                        }
+                    },
+                    yAxisYield: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        min: 0,
+                        max: 55,
+                        title: {
+                            display: true,
+                            text: 'Accumulated Reducing Sugars (g/L)',
+                            color: '#d97706',
+                            font: { size: 11, weight: 'bold' }
+                        }
+                    },
+                    yAxisRate: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 3,
+                        grid: { drawOnChartArea: false }, // Prevent grid overlapping lines
+                        title: {
+                            display: true,
+                            text: 'Reaction Velocity f\'(x) (g/L per Hour)',
+                            color: '#2563eb',
+                            font: { size: 11, weight: 'bold' }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { boxWidth: 12, font: { size: 11 } }
+                    }
+                },
+                // Click capture handler mapping coordinates back to data entries
+                onClick: (event) => {
+                    const activeElements = bioprocessChart.getElementsAtEventForMode(event, 'nearest', { intersect: false }, true);
+                    if (activeElements.length > 0) {
+                        const targetIndex = activeElements[0].index;
+                        
+                        const selectedHour = timelineLabels[targetIndex];
+                        const selectedYield = parseFloat(sugarYieldData[targetIndex]);
+                        const selectedRate = parseFloat(reactionRateData[targetIndex]);
+
+                        evaluateBioprocessMetrics(selectedHour, selectedYield, selectedRate);
+                    }
+                }
+            }
+        });
+
+        // Dynamic UI Dashboard Parsing Engine
+        function evaluateBioprocessMetrics(hour, sugarYield, rate) {
+            const panel = document.getElementById('dashboard-panel');
+            const txtStage = document.getElementById('dash-stage');
+            const badge = document.getElementById('dash-badge');
+            
+            const txtTime = document.getElementById('out-time');
+            const txtYield = document.getElementById('out-yield');
+            const txtRate = document.getElementById('out-rate');
+            const txtExp = document.getElementById('out-explanation');
+
+            // Set numeric values
+            txtTime.innerHTML = `${hour.toFixed(1)} <span class="text-xs font-normal text-slate-400">hrs</span>`;
+            txtYield.innerHTML = `${sugarYield.toFixed(2)} <span class="text-xs font-normal text-slate-400">g/L</span>`;
+            txtRate.innerHTML = `${rate.toFixed(2)} <span class="text-xs font-normal text-slate-400">g/L/hr</span>`;
+
+            // Reset dynamic border classes
+            panel.className = "bg-slate-900 text-white p-6 rounded-2xl shadow-xl transition-all duration-300 border-l-8";
+
+            // Phase logic evaluation (Lag, Log inflection, Diminishing Returns)
+            if (hour <= 2.5) {
+                panel.classList.add('border-blue-500');
+                txtStage.textContent = "Process Status: Enzyme Structural Lag Phase";
+                badge.className = "text-[10px] font-extrabold px-2.5 py-0.5 rounded-md bg-blue-950 text-blue-300";
+                txtExp.innerHTML = `At hour <strong>${hour}</strong>, the process speed is slow at <strong>f'(x) = ${rate} g/L/hr</strong>. The enzymes are just starting to bind to the oil palm fibers. The derivative is small but climbing, meaning the reaction is picking up momentum.`;
+            } 
+            else if (hour > 2.5 && hour <= 6.5) {
+                panel.classList.add('border-amber-500');
+                txtStage.textContent = "Process Status: Maximum Kinetic Acceleration (Inflection Point)";
+                badge.className = "text-[10px] font-extrabold px-2.5 py-0.5 rounded-md bg-amber-950 text-amber-300";
+                txtExp.innerHTML = `At hour <strong>${hour}</strong>, you have hit the absolute sweet spot! The derivative peaks near here at <strong>f'(x) = ${rate} g/L/hr</strong>. This value is the slope's steepness peak. The enzyme system is cleaving biomass bonds at maximum velocity.`;
+            } 
+            else {
+                panel.classList.add('border-rose-600');
+                txtStage.textContent = "Process Status: Product Inhibition & Sluggish Yields";
+                badge.className = "text-[10px] font-extrabold px-2.5 py-0.5 rounded-md bg-rose-950 text-rose-300";
+                txtExp.innerHTML = `At hour <strong>${hour}</strong>, total sugar looks high (<strong>${sugarYield} g/L</strong>), but notice the derivative has dropped down to <strong>f'(x) = ${rate} g/L/hr</strong>. The reaction has severely slowed down because accumulated sugars are blocking the enzymes. Keeping the reaction running past this hour wastes factory time and utilities for tiny marginal returns.`;
+            }
+        }
+    </script>
+</body>
+</html>
+
+```
+
+
